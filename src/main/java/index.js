@@ -59,33 +59,45 @@ function isEvenPromiseHandler(promise) {
 
 // ════════════════ Exercise 1 ════════════════════ //
 /** 
-TODO: This function takes in two numbers as arguments and creates a promise object that resolves to either "The sum is divisible by 5!" or "The sum is NOT divisible by 5!" depending on if the sum of the numbers is divisible by 5 or not. Some of the syntax has been provided for you. Fill in the rest of it's functionality.
+TODO: This function takes in two numbers as arguments and creates a promise object that resolves to either 
+"The sum is divisible by 5!" or "The sum is NOT divisible by 5!" depending on if the sum of the numbers is 
+divisible by 5 or not. Some of the syntax has been provided for you. Fill in the rest of its functionality.
 
-    @param {num1} num1 - a number
-    @param {num2} num2 - another number
-    @returns {Promise} - A Promise that contains the resolved or rejected value
+    @param {num1} num1 - a number
+    @param {num2} num2 - another number
+    @returns {Promise} - A Promise that contains the resolved or rejected value
 */
 function isDivisibleBy5(num1, num2) {
-    return new Promise(
-    () => {
-
-        // simulated asynchronous operation: checking if a number is even, but with a 1-3 second delay
-        setTimeout(() => {
-            
-        }, getRandomDelay());
-    });
-}
-// ════════════════ Exercise 2 ════════════════════ //
-
-/** 
-TODO: This function should take in a promise as an argument and changes the text of an HTML element with and id of "output2" to have it's text be the resolved value or the error message. Use the `then()` and `catch()` methods.
-
-    @param {Promise} promise - A Promise that contains the resolved or rejected value
-*/
-function isDivisibleBy5Handler(promise) {
-
-}
-
+        return new Promise((resolve, reject) => {
+            // Simulated asynchronous operation: checking if the sum is divisible by 5
+            setTimeout(() => {
+                const sum = Number(num1) + Number(num2);
+                if (sum % 5 === 0) {
+                    resolve("The sum is divisible by 5!");
+                } else {
+                    reject("The sum is NOT divisible by 5!");
+                }
+            }, getRandomDelay());
+        });
+    }
+    
+    // ════════════════ Exercise 2 ════════════════════ //
+    /** 
+    TODO: This function should take in a promise as an argument and change the text of an HTML element with 
+    an id of "output2" to have its text be the resolved value or the error message. Use the `then()` and `catch()` methods.
+    
+        @param {Promise} promise - A Promise that contains the resolved or rejected value
+    */
+    function isDivisibleBy5Handler(promise) {
+        promise
+            .then(resolvedValue => {
+                document.getElementById("output2").innerText = resolvedValue;
+            })
+            .catch(errorValue => { 
+                document.getElementById("output2").innerText = errorValue;
+            });
+    }
+    
 // ════════════════════════════════════════════════ //
 /* Note: You do not need to edit or view any code below this point. */
 
